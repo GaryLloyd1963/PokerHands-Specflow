@@ -20,3 +20,14 @@ C:\Training\PokerHands_Specflow\src\Tests.Acceptance\bin\Debug\nunit.framework.x
 C:\Training\PokerHands_Specflow\src\Tests.Acceptance\obj\Debug\Tests.Acceptance.csprojResolveAssemblyReference.cache
 C:\Training\PokerHands_Specflow\src\Tests.Acceptance\obj\Debug\Tests.Acceptance.dll
 C:\Training\PokerHands_Specflow\src\Tests.Acceptance\obj\Debug\Tests.Acceptance.pdb
+C:\source\PokerHands_Specflow\src\Tests.Acceptance\bin\Debug\Tests.Acceptance.dll.config
+C:\source\PokerHands_Specflow\src\Tests.Acceptance\bin\Debug\Tests.Acceptance.dll
+C:\source\PokerHands_Specflow\src\Tests.Acceptance\bin\Debug\Tests.Acceptance.pdb
+C:\source\PokerHands_Specflow\src\Tests.Acceptance\bin\Debug\nunit.framework.dll
+C:\source\PokerHands_Specflow\src\Tests.Acceptance\bin\Debug\PokerHands_Specflow.exe
+C:\source\PokerHands_Specflow\src\Tests.Acceptance\bin\Debug\TechTalk.SpecFlow.dll
+C:\source\PokerHands_Specflow\src\Tests.Acceptance\bin\Debug\PokerHands_Specflow.pdb
+C:\source\PokerHands_Specflow\src\Tests.Acceptance\bin\Debug\nunit.framework.xml
+C:\source\PokerHands_Specflow\src\Tests.Acceptance\obj\Debug\Tests.Acceptance.csprojResolveAssemblyReference.cache
+C:\source\PokerHands_Specflow\src\Tests.Acceptance\obj\Debug\Tests.Acceptance.dll
+C:\source\PokerHands_Specflow\src\Tests.Acceptance\obj\Debug\Tests.Acceptance.pdb
