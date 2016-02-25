@@ -1,0 +1,10 @@
+C:\Training\PokerHands_Specflow\PokerHands_Specflow\bin\Debug\PokerHands_Specflow.exe
+C:\Training\PokerHands_Specflow\PokerHands_Specflow\bin\Debug\PokerHands_Specflow.pdb
+C:\Training\PokerHands_Specflow\PokerHands_Specflow\obj\Debug\PokerHands_Specflow.exe
+C:\Training\PokerHands_Specflow\PokerHands_Specflow\obj\Debug\PokerHands_Specflow.pdb
+C:\Training\PokerHands_Specflow\PokerHands_Specflow\obj\Debug\PokerHands.csprojResolveAssemblyReference.cache
+C:\Training\PokerHands_Specflow\src\PokerHands_Specflow\bin\Debug\PokerHands_Specflow.exe
+C:\Training\PokerHands_Specflow\src\PokerHands_Specflow\bin\Debug\PokerHands_Specflow.pdb
+C:\Training\PokerHands_Specflow\src\PokerHands_Specflow\obj\Debug\PokerHands_Specflow.exe
+C:\Training\PokerHands_Specflow\src\PokerHands_Specflow\obj\Debug\PokerHands_Specflow.pdb
+C:\Training\PokerHands_Specflow\src\PokerHands_Specflow\obj\Debug\PokerHands.csprojResolveAssemblyReference.cache

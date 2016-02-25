@@ -1,0 +1,4 @@
+C:\Training\PokerHands_Specflow\PokerHands_Specflow\bin\Debug\PokerHands_Specflow.exe
+C:\Training\PokerHands_Specflow\PokerHands_Specflow\bin\Debug\PokerHands_Specflow.pdb
+C:\Training\PokerHands_Specflow\PokerHands_Specflow\obj\Debug\PokerHands_Specflow.exe
+C:\Training\PokerHands_Specflow\PokerHands_Specflow\obj\Debug\PokerHands_Specflow.pdb
