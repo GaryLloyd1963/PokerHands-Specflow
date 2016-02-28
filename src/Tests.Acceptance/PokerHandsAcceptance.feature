@@ -3,6 +3,8 @@
 	As the program developer
 	I want to be able to compare 2 poker hands
 
+#=================================================================================================================
+# Straight flush tests
 Scenario: Given a low straight flush and a high straight flush dealt to players Black and White
 	Given the hand dealt to Black is '4S 5S 6S 7S 8S'
 	And the hand dealt to White is  '9C TC JC QC KC'
@@ -20,7 +22,15 @@ Scenario: Given a 4 of a kind hand and a straight flush dealt to players Black a
 	And the hand dealt to White is  '4C 5C 6C 7C 8C'
 	When I compare the hands
 	Then the comparison result is 'White wins. - straight flush'
-	
+
+Scenario: Given a 2 equal straight flushes dealt to players Black and White
+	Given the hand dealt to Black is '4D 5D 6D 7D 8D'
+	And the hand dealt to White is  '4C 5C 6C 7C 8C'
+	When I compare the hands
+	Then the comparison result is 'Tie'
+
+#=================================================================================================================
+# High card tests	
 Scenario: Given 2 high card hands, king high, and ace high, dealt to players Black and White
 	Given the hand dealt to Black is '2H 3D 5S 9C KD'
 	And the hand dealt to White is  '2C 3H 4S 8C AH'

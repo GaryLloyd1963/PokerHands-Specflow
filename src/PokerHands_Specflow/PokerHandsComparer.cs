@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace PokerHands
 {
@@ -7,27 +8,37 @@ namespace PokerHands
         private const string CardValues = "..23456789TJQKA";
         private const string CardSuits = "SCDH";
 
-        public string CompareHands(string firstPlayer, string firstPlayerCards, string secondPlayer, string secondPlayerCards)
+        public string CompareHands(string firstPlayerName, string firstPlayerCards, string secondPlayerName, string secondPlayerCards)
         {
-            var firstStraightFlushValue = HandIsStraightFlush(firstPlayerCards);
-            var secondStraightFlushValue = HandIsStraightFlush(secondPlayerCards);
-            if ( firstStraightFlushValue > secondStraightFlushValue )
-                return (string.Format("{0} wins. - straight flush", firstPlayer));
-            if (secondStraightFlushValue > firstStraightFlushValue)
-                return (string.Format("{0} wins. - straight flush", secondPlayer));
-
+            var result = CheckForStraightFlush(firstPlayerName, firstPlayerCards, secondPlayerName, secondPlayerCards);
+            if (result != String.Empty)
+                return result;
+     
             var firstHandFourOfAKindValue = HandIsFourOfAKind(firstPlayerCards);
             var secondHandFourOfAKindValue = HandIsFourOfAKind(secondPlayerCards);
             if (firstHandFourOfAKindValue > secondHandFourOfAKindValue)
-                return (string.Format("{0} wins. - four of a kind", firstPlayer));
+                return (string.Format("{0} wins. - four of a kind", firstPlayerName));
             if (secondHandFourOfAKindValue > firstHandFourOfAKindValue)
-                return (string.Format("{0} wins. - four of a kind", secondPlayer));
+                return (string.Format("{0} wins. - four of a kind", secondPlayerName));
 
             if (firstPlayerCards.Contains("A"))
-                return string.Format("{0} wins. - with high card: Ace", firstPlayer);
+                return string.Format("{0} wins. - with high card: Ace", firstPlayerName);
             if (secondPlayerCards.Contains("A"))
-                return string.Format("{0} wins. - with high card: Ace", secondPlayer);
+                return string.Format("{0} wins. - with high card: Ace", secondPlayerName);
             return "Tie";
+        }
+
+        private string CheckForStraightFlush(string firstPlayerName, string firstPlayerCards, string secondPlayerName, string secondPlayerCards)
+        {
+            var firstStraightFlushValue = HandIsStraightFlush(firstPlayerCards);
+            var secondStraightFlushValue = HandIsStraightFlush(secondPlayerCards);
+            if (firstStraightFlushValue > secondStraightFlushValue)
+                return (string.Format("{0} wins. - straight flush", firstPlayerName));
+            if (secondStraightFlushValue > firstStraightFlushValue)
+                return (string.Format("{0} wins. - straight flush", secondPlayerName));
+            if (firstStraightFlushValue > 0 && secondStraightFlushValue > 0)
+                return "Tie";
+            return string.Empty;
         }
 
         private int HandIsStraightFlush(string hand)
