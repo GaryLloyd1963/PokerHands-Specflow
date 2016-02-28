@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 namespace PokerHands
 {
@@ -11,15 +10,12 @@ namespace PokerHands
         public string CompareHands(string firstPlayerName, string firstPlayerCards, string secondPlayerName, string secondPlayerCards)
         {
             var result = CheckForStraightFlush(firstPlayerName, firstPlayerCards, secondPlayerName, secondPlayerCards);
-            if (result != String.Empty)
+            if (result != string.Empty)
                 return result;
-     
-            var firstHandFourOfAKindValue = HandIsFourOfAKind(firstPlayerCards);
-            var secondHandFourOfAKindValue = HandIsFourOfAKind(secondPlayerCards);
-            if (firstHandFourOfAKindValue > secondHandFourOfAKindValue)
-                return (string.Format("{0} wins. - four of a kind", firstPlayerName));
-            if (secondHandFourOfAKindValue > firstHandFourOfAKindValue)
-                return (string.Format("{0} wins. - four of a kind", secondPlayerName));
+
+            result = CheckFor4OfaKind(firstPlayerName, firstPlayerCards, secondPlayerName, secondPlayerCards);
+            if (result != string.Empty)
+                return result;
 
             if (firstPlayerCards.Contains("A"))
                 return string.Format("{0} wins. - with high card: Ace", firstPlayerName);
@@ -41,12 +37,23 @@ namespace PokerHands
             return string.Empty;
         }
 
+        private string CheckFor4OfaKind(string firstPlayerName, string firstPlayerCards, string secondPlayerName, string secondPlayerCards)
+        {
+            var firstHandFourOfAKindValue = HandIsFourOfAKind(firstPlayerCards);
+            var secondHandFourOfAKindValue = HandIsFourOfAKind(secondPlayerCards);
+            if (firstHandFourOfAKindValue > secondHandFourOfAKindValue)
+                return (string.Format("{0} wins. - four of a kind", firstPlayerName));
+            if (secondHandFourOfAKindValue > firstHandFourOfAKindValue)
+                return (string.Format("{0} wins. - four of a kind", secondPlayerName));
+            return string.Empty;
+        }
+
         private int HandIsStraightFlush(string hand)
         {
             if (!HandIsFlush(hand))
                 return 0;
-            var HighestRank = HandIsStraight(hand);
-            return HighestRank > 0 ? HighestRank : 0;
+            var highestRank = HandIsStraight(hand);
+            return highestRank > 0 ? highestRank : 0;
         }
 
         private bool HandIsFlush(string hand)

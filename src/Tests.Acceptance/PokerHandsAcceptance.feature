@@ -30,6 +30,26 @@ Scenario: Given a 2 equal straight flushes dealt to players Black and White
 	Then the comparison result is 'Tie'
 
 #=================================================================================================================
+# Fours of a kind tests	
+Scenario: Given a high 4 of a kind and a low 4 of a kind dealt to players Black and White
+	Given the hand dealt to Black is 'KH KS KC KD 2C'
+	And the hand dealt to White is  '3H 3S 3C 3D 8S'
+	When I compare the hands
+	Then the comparison result is 'Black wins. - four of a kind'
+
+Scenario: Given an Ace high and a 4 of a kind dealt to players Black and White
+	Given the hand dealt to Black is 'AH 2S KC 4D 6S'
+	And the hand dealt to White is  '2C 7H 7S 7C 7D'
+	When I compare the hands
+	Then the comparison result is 'White wins. - four of a kind'
+
+Scenario: Given a low 4 of a kind and a high 4 of a kind dealt to players Black and White
+	Given the hand dealt to Black is '5H 5S 5C 5D 9S'
+	And the hand dealt to White is  'AH AS AC AD 6C'
+	When I compare the hands
+	Then the comparison result is 'White wins. - four of a kind'
+
+#=================================================================================================================
 # High card tests	
 Scenario: Given 2 high card hands, king high, and ace high, dealt to players Black and White
 	Given the hand dealt to Black is '2H 3D 5S 9C KD'
@@ -49,14 +69,4 @@ Scenario: Given a high card and a flush dealt to players Black and White
 	When I compare the hands
 	Then the comparison result is 'White wins. - flush'
 
-Scenario: Given a high 4 of a kind and a low 4 of a kind dealt to players Black and White
-	Given the hand dealt to Black is 'KH KS KC KD 2C'
-	And the hand dealt to White is  '3H 3S 3C 3D 8S'
-	When I compare the hands
-	Then the comparison result is 'Black wins. - four of a kind'
 
-Scenario: Given an Ace high and a 4 of a kind dealt to players Black and White
-	Given the hand dealt to Black is 'AH 2S KC 4D 6S'
-	And the hand dealt to White is  '2C 7H 7S 7C 7D'
-	When I compare the hands
-	Then the comparison result is 'White wins. - four of a kind'
