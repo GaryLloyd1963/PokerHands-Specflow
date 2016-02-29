@@ -50,6 +50,14 @@ Scenario: Given a low 4 of a kind and a high 4 of a kind dealt to players Black 
 	Then the comparison result is 'White wins. - four of a kind'
 
 #=================================================================================================================
+# Full house tests
+Scenario: Given a high card hand and a full house dealt to players Black and White
+	Given the hand dealt to Black is '6H 3D AH 2D 5C'
+	And the hand dealt to White is  '8H 8D 8C KD KH'
+	When I compare the hands
+	Then the comparison result is 'White wins. - full house'
+
+#=================================================================================================================
 # High card tests	
 Scenario: Given 2 high card hands, king high, and ace high, dealt to players Black and White
 	Given the hand dealt to Black is '2H 3D 5S 9C KD'
