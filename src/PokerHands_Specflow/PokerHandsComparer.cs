@@ -8,7 +8,8 @@ namespace PokerHands
         private const int CARDS_IN_HAND = 5;
         private const int NO_VALUE = 0;
         private string NO_RESULT = string.Empty;
-        private const string CardValues = "..23456789TJQKA";
+        private const string CardValuesAceIsHigh = "..23456789TJQKA";
+        private const string CardValuesAceIsLow = ".A23456789TJQK";
         private const string CardSuits = "SCDH";
 
         public string CompareHands(string firstPlayerName, string firstPlayerCards, string secondPlayerName, string secondPlayerCards)
@@ -22,6 +23,10 @@ namespace PokerHands
                 return result;
 
             result = CheckForAFullHouse(firstPlayerName, firstPlayerCards, secondPlayerName, secondPlayerCards);
+            if (result != NO_RESULT)
+                return result;
+
+            result = CheckForAStraight(firstPlayerName, firstPlayerCards, secondPlayerName, secondPlayerCards);
             if (result != NO_RESULT)
                 return result;
 
@@ -68,14 +73,28 @@ namespace PokerHands
             return NO_RESULT;
         }
 
+        private string CheckForAStraight(string firstPlayerName, string firstPlayerCards, string secondPlayerName,
+            string secondPlayerCards)
+        {
+            var firstStraightRankValue = HandIsStraight(firstPlayerCards);
+            var secondStraightRankValue = HandIsStraight(secondPlayerCards);
+            if (firstStraightRankValue > secondStraightRankValue)
+                return (string.Format("{0} wins - straight", firstPlayerName));
+            if (secondStraightRankValue > firstStraightRankValue)
+                return (string.Format("{0} wins - straight", secondPlayerName));
+            if (firstStraightRankValue > NO_VALUE)
+                return "Tie";
+            return NO_RESULT;
+        }
+
         private int FullHouseRankValue(string hand)
         {
             var pairFound = false;
             var tripsFound = false;
             var tripsValue = NO_VALUE;
-            for (var cardIdx = 0; cardIdx < CardValues.Length; cardIdx++)
+            for (var cardIdx = 0; cardIdx < CardValuesAceIsHigh.Length; cardIdx++)
             {
-                var count = CountCardSymbols(CardValues[cardIdx], hand);
+                var count = CountCardSymbols(CardValuesAceIsHigh[cardIdx], hand);
                 if (count == 3)
                 {
                     tripsFound = true;
@@ -102,26 +121,61 @@ namespace PokerHands
 
         private int HandIsStraight(string hand)
         {
-            var lowestCardRank = LowestRank(hand);
-            var highestCardRank = HighestRank(hand);
+            var straightValue = HandIsStraightAceIsHigh(hand);
+            if (straightValue > NO_VALUE)
+                return straightValue;
+            straightValue = HandIsStraightAceIsLow(hand);
+            return straightValue > NO_VALUE ? straightValue : NO_VALUE;
+        }
+        private int HandIsStraightAceIsHigh(string hand)
+        {
+            var lowestCardRank = LowestRankAceIsHigh(hand);
+            var highestCardRank = HighestRankAceIsHigh(hand);
             return highestCardRank - lowestCardRank == 4 ? highestCardRank : NO_VALUE;
         }
 
-        private int LowestRank(string hand)
+        private int HandIsStraightAceIsLow(string hand)
         {
-            for (var cardIdx = 0; cardIdx < CardValues.Length; cardIdx++)
+            var lowestCardRank = LowestRankAceIsLow(hand);
+            var highestCardRank = HighestRankAceIsLow(hand);
+            return highestCardRank - lowestCardRank == 4 ? highestCardRank : NO_VALUE;
+        }
+
+        private int LowestRankAceIsHigh(string hand)
+        {
+            for (var cardIdx = 0; cardIdx < CardValuesAceIsHigh.Length; cardIdx++)
             {
-                if (CountCardSymbols(CardValues[cardIdx], hand) > 0)
+                if (CountCardSymbols(CardValuesAceIsHigh[cardIdx], hand) > 0)
                     return cardIdx;
             }
             return NO_VALUE;
         }
 
-        private int HighestRank(string hand)
+        private int LowestRankAceIsLow(string hand)
         {
-            for (var cardIdx = CardValues.Length - 1; cardIdx >= 0; cardIdx--)
+            for (var cardIdx = 0; cardIdx < CardValuesAceIsLow.Length; cardIdx++)
             {
-                if (CountCardSymbols(CardValues[cardIdx], hand) > 0)
+                if (CountCardSymbols(CardValuesAceIsLow[cardIdx], hand) > 0)
+                    return cardIdx;
+            }
+            return NO_VALUE;
+        }
+
+        private int HighestRankAceIsHigh(string hand)
+        {
+            for (var cardIdx = CardValuesAceIsHigh.Length - 1; cardIdx >= 0; cardIdx--)
+            {
+                if (CountCardSymbols(CardValuesAceIsHigh[cardIdx], hand) > 0)
+                    return cardIdx;
+            }
+            return NO_VALUE;
+        }
+
+        private int HighestRankAceIsLow(string hand)
+        {
+            for (var cardIdx = CardValuesAceIsLow.Length - 1; cardIdx >= 0; cardIdx--)
+            {
+                if (CountCardSymbols(CardValuesAceIsLow[cardIdx], hand) > 0)
                     return cardIdx;
             }
             return NO_VALUE;
@@ -129,9 +183,9 @@ namespace PokerHands
 
         private int FourOfAKindRankValue(string hand)
         {
-            for (var cardIdx = 0; cardIdx < CardValues.Length; cardIdx++)
+            for (var cardIdx = 0; cardIdx < CardValuesAceIsHigh.Length; cardIdx++)
             {
-                if (CountCardSymbols(CardValues[cardIdx], hand) == 4)
+                if (CountCardSymbols(CardValuesAceIsHigh[cardIdx], hand) == 4)
                     return cardIdx;
             }
             return NO_VALUE;

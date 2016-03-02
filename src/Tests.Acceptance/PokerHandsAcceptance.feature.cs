@@ -87,12 +87,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Given a high straight flush and a low straight flush dealt to players Black and W" +
-            "hite")]
-        public virtual void GivenAHighStraightFlushAndALowStraightFlushDealtToPlayersBlackAndWhite()
+        [NUnit.Framework.DescriptionAttribute("Straight Flush. Given a high straight flush and a low straight flush dealt to pla" +
+            "yers Black and White")]
+        public virtual void StraightFlush_GivenAHighStraightFlushAndALowStraightFlushDealtToPlayersBlackAndWhite()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Given a high straight flush and a low straight flush dealt to players Black and W" +
-                    "hite", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Straight Flush. Given a high straight flush and a low straight flush dealt to pla" +
+                    "yers Black and White", ((string[])(null)));
 #line 14
 this.ScenarioSetup(scenarioInfo);
 #line 15
@@ -108,10 +108,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Given a 4 of a kind hand and a straight flush dealt to players Black and White")]
-        public virtual void GivenA4OfAKindHandAndAStraightFlushDealtToPlayersBlackAndWhite()
+        [NUnit.Framework.DescriptionAttribute("Straight Flush. Given a 4 of a kind hand and a straight flush dealt to players Bl" +
+            "ack and White")]
+        public virtual void StraightFlush_GivenA4OfAKindHandAndAStraightFlushDealtToPlayersBlackAndWhite()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Given a 4 of a kind hand and a straight flush dealt to players Black and White", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Straight Flush. Given a 4 of a kind hand and a straight flush dealt to players Bl" +
+                    "ack and White", ((string[])(null)));
 #line 20
 this.ScenarioSetup(scenarioInfo);
 #line 21
@@ -127,10 +129,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Given a 2 equal straight flushes dealt to players Black and White")]
-        public virtual void GivenA2EqualStraightFlushesDealtToPlayersBlackAndWhite()
+        [NUnit.Framework.DescriptionAttribute("Straight Flush. Given a 2 equal straight flushes dealt to players Black and White" +
+            "")]
+        public virtual void StraightFlush_GivenA2EqualStraightFlushesDealtToPlayersBlackAndWhite()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Given a 2 equal straight flushes dealt to players Black and White", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Straight Flush. Given a 2 equal straight flushes dealt to players Black and White" +
+                    "", ((string[])(null)));
 #line 26
 this.ScenarioSetup(scenarioInfo);
 #line 27
@@ -146,10 +150,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Given a high 4 of a kind and a low 4 of a kind dealt to players Black and White")]
-        public virtual void GivenAHigh4OfAKindAndALow4OfAKindDealtToPlayersBlackAndWhite()
+        [NUnit.Framework.DescriptionAttribute("Four of a kind. Given a high 4 of a kind and a low 4 of a kind dealt to players B" +
+            "lack and White")]
+        public virtual void FourOfAKind_GivenAHigh4OfAKindAndALow4OfAKindDealtToPlayersBlackAndWhite()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Given a high 4 of a kind and a low 4 of a kind dealt to players Black and White", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Four of a kind. Given a high 4 of a kind and a low 4 of a kind dealt to players B" +
+                    "lack and White", ((string[])(null)));
 #line 34
 this.ScenarioSetup(scenarioInfo);
 #line 35
@@ -165,10 +171,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Given an Ace high and a 4 of a kind dealt to players Black and White")]
-        public virtual void GivenAnAceHighAndA4OfAKindDealtToPlayersBlackAndWhite()
+        [NUnit.Framework.DescriptionAttribute("Four of a kind. Given an Ace high and a 4 of a kind dealt to players Black and Wh" +
+            "ite")]
+        public virtual void FourOfAKind_GivenAnAceHighAndA4OfAKindDealtToPlayersBlackAndWhite()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Given an Ace high and a 4 of a kind dealt to players Black and White", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Four of a kind. Given an Ace high and a 4 of a kind dealt to players Black and Wh" +
+                    "ite", ((string[])(null)));
 #line 40
 this.ScenarioSetup(scenarioInfo);
 #line 41
@@ -184,10 +192,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Given a low 4 of a kind and a high 4 of a kind dealt to players Black and White")]
-        public virtual void GivenALow4OfAKindAndAHigh4OfAKindDealtToPlayersBlackAndWhite()
+        [NUnit.Framework.DescriptionAttribute("Four of a kind. Given a low 4 of a kind and a high 4 of a kind dealt to players B" +
+            "lack and White")]
+        public virtual void FourOfAKind_GivenALow4OfAKindAndAHigh4OfAKindDealtToPlayersBlackAndWhite()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Given a low 4 of a kind and a high 4 of a kind dealt to players Black and White", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Four of a kind. Given a low 4 of a kind and a high 4 of a kind dealt to players B" +
+                    "lack and White", ((string[])(null)));
 #line 46
 this.ScenarioSetup(scenarioInfo);
 #line 47
@@ -203,10 +213,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Given a high card hand and a full house dealt to players Black and White")]
-        public virtual void GivenAHighCardHandAndAFullHouseDealtToPlayersBlackAndWhite()
+        [NUnit.Framework.DescriptionAttribute("Full house. Given a high card hand and a full house dealt to players Black and Wh" +
+            "ite")]
+        public virtual void FullHouse_GivenAHighCardHandAndAFullHouseDealtToPlayersBlackAndWhite()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Given a high card hand and a full house dealt to players Black and White", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Full house. Given a high card hand and a full house dealt to players Black and Wh" +
+                    "ite", ((string[])(null)));
 #line 54
 this.ScenarioSetup(scenarioInfo);
 #line 55
@@ -222,14 +234,16 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Given a full house and a high card hand dealt to players Black and White")]
-        public virtual void GivenAFullHouseAndAHighCardHandDealtToPlayersBlackAndWhite()
+        [NUnit.Framework.DescriptionAttribute("Full house. Given a full house and a high card hand dealt to players Black and Wh" +
+            "ite")]
+        public virtual void FullHouse_GivenAFullHouseAndAHighCardHandDealtToPlayersBlackAndWhite()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Given a full house and a high card hand dealt to players Black and White", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Full house. Given a full house and a high card hand dealt to players Black and Wh" +
+                    "ite", ((string[])(null)));
 #line 60
 this.ScenarioSetup(scenarioInfo);
 #line 61
- testRunner.Given("the hand dealt to Black is \'4H 4D 4C 6D 6H\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the hand dealt to Black is \'4C 6D 6H 4H 4D\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 62
  testRunner.And("the hand dealt to White is  \'2H 3D KC QD AH\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 63
@@ -241,10 +255,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Given a high card hand, and a straight, dealt to players Black and White")]
-        public virtual void GivenAHighCardHandAndAStraightDealtToPlayersBlackAndWhite()
+        [NUnit.Framework.DescriptionAttribute("Straight. Given a high card hand, and a straight, dealt to players Black and Whit" +
+            "e")]
+        public virtual void Straight_GivenAHighCardHandAndAStraightDealtToPlayersBlackAndWhite()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Given a high card hand, and a straight, dealt to players Black and White", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Straight. Given a high card hand, and a straight, dealt to players Black and Whit" +
+                    "e", ((string[])(null)));
 #line 68
 this.ScenarioSetup(scenarioInfo);
 #line 69
@@ -260,61 +276,99 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Given 2 high card hands, king high, and ace high, dealt to players Black and Whit" +
-            "e")]
-        public virtual void Given2HighCardHandsKingHighAndAceHighDealtToPlayersBlackAndWhite()
+        [NUnit.Framework.DescriptionAttribute("Straight. Given a straight and a high card hand dealt to players Black and White")]
+        public virtual void Straight_GivenAStraightAndAHighCardHandDealtToPlayersBlackAndWhite()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Given 2 high card hands, king high, and ace high, dealt to players Black and Whit" +
-                    "e", ((string[])(null)));
-#line 76
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Straight. Given a straight and a high card hand dealt to players Black and White", ((string[])(null)));
+#line 74
 this.ScenarioSetup(scenarioInfo);
+#line 75
+ testRunner.Given("the hand dealt to Black is \'2H 3D 4S 5C 6D\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 76
+ testRunner.And("the hand dealt to White is  \'KC 2D 3S 4C 5H\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 77
- testRunner.Given("the hand dealt to Black is \'2H 3D 5S 9C KD\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 78
- testRunner.And("the hand dealt to White is  \'2C 3H 4S 8C AH\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 79
  testRunner.When("I compare the hands", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 78
+ testRunner.Then("the comparison result is \'Black wins - straight\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Straight. Given 2 equal straights dealt to players Black and White")]
+        public virtual void Straight_Given2EqualStraightsDealtToPlayersBlackAndWhite()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Straight. Given 2 equal straights dealt to players Black and White", ((string[])(null)));
 #line 80
+this.ScenarioSetup(scenarioInfo);
+#line 81
+ testRunner.Given("the hand dealt to Black is \'2H 3D 4S 5C 6D\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 82
+ testRunner.And("the hand dealt to White is  \'2C 3H 4C 5H 6C\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 83
+ testRunner.When("I compare the hands", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 84
+ testRunner.Then("the comparison result is \'Tie\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("High card. Given 2 high card hands, king high, and ace high, dealt to players Bla" +
+            "ck and White")]
+        public virtual void HighCard_Given2HighCardHandsKingHighAndAceHighDealtToPlayersBlackAndWhite()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("High card. Given 2 high card hands, king high, and ace high, dealt to players Bla" +
+                    "ck and White", ((string[])(null)));
+#line 88
+this.ScenarioSetup(scenarioInfo);
+#line 89
+ testRunner.Given("the hand dealt to Black is \'2H 3D 5S 9C KD\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 90
+ testRunner.And("the hand dealt to White is  \'2C 3H 4S 8C AH\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 91
+ testRunner.When("I compare the hands", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 92
  testRunner.Then("the comparison result is \'White wins - with high card: Ace\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Given 2 high card hands, ace high, and king high, dealt to players Black and Whit" +
-            "e")]
-        public virtual void Given2HighCardHandsAceHighAndKingHighDealtToPlayersBlackAndWhite()
+        [NUnit.Framework.DescriptionAttribute("High card. Given 2 high card hands, ace high, and king high, dealt to players Bla" +
+            "ck and White")]
+        public virtual void HighCard_Given2HighCardHandsAceHighAndKingHighDealtToPlayersBlackAndWhite()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Given 2 high card hands, ace high, and king high, dealt to players Black and Whit" +
-                    "e", ((string[])(null)));
-#line 82
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("High card. Given 2 high card hands, ace high, and king high, dealt to players Bla" +
+                    "ck and White", ((string[])(null)));
+#line 94
 this.ScenarioSetup(scenarioInfo);
-#line 83
+#line 95
  testRunner.Given("the hand dealt to Black is \'2C 3H 4S 8C AH\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 84
+#line 96
  testRunner.And("the hand dealt to White is  \'2H 3D 5S 9C KD\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 85
+#line 97
  testRunner.When("I compare the hands", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 86
+#line 98
  testRunner.Then("the comparison result is \'Black wins - with high card: Ace\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Given a high card and a flush dealt to players Black and White")]
-        public virtual void GivenAHighCardAndAFlushDealtToPlayersBlackAndWhite()
+        [NUnit.Framework.DescriptionAttribute("High card. Given a high card and a flush dealt to players Black and White")]
+        public virtual void HighCard_GivenAHighCardAndAFlushDealtToPlayersBlackAndWhite()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Given a high card and a flush dealt to players Black and White", ((string[])(null)));
-#line 88
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("High card. Given a high card and a flush dealt to players Black and White", ((string[])(null)));
+#line 100
 this.ScenarioSetup(scenarioInfo);
-#line 89
+#line 101
  testRunner.Given("the hand dealt to Black is \'2H 4S 4C 2D 4H\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 90
+#line 102
  testRunner.And("the hand dealt to White is  \'2S 8S AS QS 3S\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 91
+#line 103
  testRunner.When("I compare the hands", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 92
+#line 104
  testRunner.Then("the comparison result is \'White wins - flush\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
