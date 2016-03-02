@@ -5,6 +5,7 @@ namespace PokerHands
 {
     public class PokerHandsComparer
     {
+        private const int CARDS_IN_HAND = 5;
         private const int NO_VALUE = 0;
         private string NO_RESULT = string.Empty;
         private const string CardValues = "..23456789TJQKA";
@@ -17,6 +18,10 @@ namespace PokerHands
                 return result;
 
             result = CheckFor4OfaKind(firstPlayerName, firstPlayerCards, secondPlayerName, secondPlayerCards);
+            if (result != string.Empty)
+                return result;
+
+            result = CheckForAFullHouse(firstPlayerName, firstPlayerCards, secondPlayerName, secondPlayerCards);
             if (result != string.Empty)
                 return result;
 
@@ -56,12 +61,30 @@ namespace PokerHands
         {
             var firstFullHouseRankValue = FullHouseRankValue(firstPlayerCards);
             var secondFullHouseRankValue = FullHouseRankValue(secondPlayerCards);
+            if (firstFullHouseRankValue > secondFullHouseRankValue)
+                return (string.Format("{0} wins. - full house", firstPlayerName));
+            if (secondFullHouseRankValue > firstFullHouseRankValue)
+                return (string.Format("{0} wins. - full house", secondPlayerName));
             return NO_RESULT;
         }
 
-        private int FullHouseRankValue(string cards)
+        private int FullHouseRankValue(string hand)
         {
-            return NO_VALUE;
+            var pairFound = false;
+            var tripsFound = false;
+            var tripsValue = NO_VALUE;
+            for (var cardIdx = 0; cardIdx < CardValues.Length; cardIdx++)
+            {
+                var count = CountCardSymbols(CardValues[cardIdx], hand);
+                if (count == 3)
+                {
+                    tripsFound = true;
+                    tripsValue = cardIdx;
+                }
+                else if (count == 2)
+                    pairFound = true;
+            }
+            return tripsFound && pairFound? tripsValue : NO_VALUE;
         }
 
         private int StraightFlushRankValue(string hand)
@@ -74,14 +97,14 @@ namespace PokerHands
 
         private bool HandIsFlush(string hand)
         {
-            return CardSuits.Any(t => CountCardSymbols(t, hand) == 5);
+            return CardSuits.Any(t => CountCardSymbols(t, hand) == CARDS_IN_HAND);
         }
 
         private int HandIsStraight(string hand)
         {
             var lowestCardRank = LowestRank(hand);
             var highestCardRank = HighestRank(hand);
-            return highestCardRank - lowestCardRank == 4 ? highestCardRank : 0;
+            return highestCardRank - lowestCardRank == 4 ? highestCardRank : NO_VALUE;
         }
 
         private int LowestRank(string hand)
