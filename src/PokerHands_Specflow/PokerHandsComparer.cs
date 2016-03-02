@@ -14,21 +14,21 @@ namespace PokerHands
         public string CompareHands(string firstPlayerName, string firstPlayerCards, string secondPlayerName, string secondPlayerCards)
         {
             var result = CheckForStraightFlush(firstPlayerName, firstPlayerCards, secondPlayerName, secondPlayerCards);
-            if (result != string.Empty)
+            if (result != NO_RESULT)
                 return result;
 
             result = CheckFor4OfaKind(firstPlayerName, firstPlayerCards, secondPlayerName, secondPlayerCards);
-            if (result != string.Empty)
+            if (result != NO_RESULT)
                 return result;
 
             result = CheckForAFullHouse(firstPlayerName, firstPlayerCards, secondPlayerName, secondPlayerCards);
-            if (result != string.Empty)
+            if (result != NO_RESULT)
                 return result;
 
             if (firstPlayerCards.Contains("A"))
-                return string.Format("{0} wins. - with high card: Ace", firstPlayerName);
+                return string.Format("{0} wins - with high card: Ace", firstPlayerName);
             if (secondPlayerCards.Contains("A"))
-                return string.Format("{0} wins. - with high card: Ace", secondPlayerName);
+                return string.Format("{0} wins - with high card: Ace", secondPlayerName);
             return "Tie";
         }
 
@@ -37,9 +37,9 @@ namespace PokerHands
             var firstStraightFlushValue = StraightFlushRankValue(firstPlayerCards);
             var secondStraightFlushValue = StraightFlushRankValue(secondPlayerCards);
             if (firstStraightFlushValue > secondStraightFlushValue)
-                return (string.Format("{0} wins. - straight flush", firstPlayerName));
+                return (string.Format("{0} wins - straight flush", firstPlayerName));
             if (secondStraightFlushValue > firstStraightFlushValue)
-                return (string.Format("{0} wins. - straight flush", secondPlayerName));
+                return (string.Format("{0} wins - straight flush", secondPlayerName));
             if (firstStraightFlushValue > NO_VALUE && secondStraightFlushValue > NO_VALUE)
                 return "Tie";
             return NO_RESULT;
@@ -50,9 +50,9 @@ namespace PokerHands
             var firstHandFourOfAKindValue = FourOfAKindRankValue(firstPlayerCards);
             var secondHandFourOfAKindValue = FourOfAKindRankValue(secondPlayerCards);
             if (firstHandFourOfAKindValue > secondHandFourOfAKindValue)
-                return (string.Format("{0} wins. - four of a kind", firstPlayerName));
+                return (string.Format("{0} wins - four of a kind", firstPlayerName));
             if (secondHandFourOfAKindValue > firstHandFourOfAKindValue)
-                return (string.Format("{0} wins. - four of a kind", secondPlayerName));
+                return (string.Format("{0} wins - four of a kind", secondPlayerName));
             return NO_RESULT;
         }
 
@@ -62,9 +62,9 @@ namespace PokerHands
             var firstFullHouseRankValue = FullHouseRankValue(firstPlayerCards);
             var secondFullHouseRankValue = FullHouseRankValue(secondPlayerCards);
             if (firstFullHouseRankValue > secondFullHouseRankValue)
-                return (string.Format("{0} wins. - full house", firstPlayerName));
+                return (string.Format("{0} wins - full house", firstPlayerName));
             if (secondFullHouseRankValue > firstFullHouseRankValue)
-                return (string.Format("{0} wins. - full house", secondPlayerName));
+                return (string.Format("{0} wins - full house", secondPlayerName));
             return NO_RESULT;
         }
 

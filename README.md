@@ -4,7 +4,7 @@ Poker Hands with Specflow Testing
 This small project illustrates the use of Specflow tests on a traditional Dojo-Kata exercise "Poker Hands",
 source : http://codingdojo.org/cgi-bin/index.pl?KataPokerHands
 
-Tech stack - C#, VS2015, Nunit 2.6.4, Specflow 2.0.0
+Tech stack - C#, VS2015, Nunit 2.6.4, Specflow 1.9.0
 ##Problem Description 
 
 Your job is to compare several pairs of poker hands and to indicate which, if either, has a higher rank. 
