@@ -1,143 +1,140 @@
-﻿using System.Collections.Specialized;
-using System.Linq;
-using System.Linq.Expressions;
-
-namespace PokerHands
+﻿namespace PokerHands
 {
     public class PokerHandsComparer
     {
-        private const int CARDS_IN_HAND = 5;
-        private const int NO_VALUE = 0;
-        private string NO_RESULT = string.Empty;
-
         private int TWOPAIR_HIGHEST_PAIR = 0;
         private int TWOPAIR_LOWEST_PAIR = 1;
         private int TWOPAIR_KICKER = 2;
 
-        private const string CardValuesAceIsHigh = "..23456789TJQKA";
-        private const string CardValuesAceIsLow = ".A23456789TJQK";
-        private const string CardSuits = "SCDH";
+        private IHandEvaluator evaluator;
+        private string firstPlayerName;
+        private string secondPlayerName;
+        private string firstPlayerCards;
+        private string secondPlayerCards;
 
-        public string CompareHands(string firstPlayerName, string firstPlayerCards, string secondPlayerName, string secondPlayerCards)
+        public PokerHandsComparer(IHandEvaluator evaluator, string firstPlayerName
+                                        , string secondPlayerName, string firstPlayerCards, string secondPlayerCards)
         {
-            var result = CheckForStraightFlush(firstPlayerName, firstPlayerCards, secondPlayerName, secondPlayerCards);
-            if (result != NO_RESULT)
+            this.evaluator = evaluator;
+            this.firstPlayerName = firstPlayerName;
+            this.secondPlayerName = secondPlayerName;
+            this.firstPlayerCards = firstPlayerCards;
+            this.secondPlayerCards = secondPlayerCards;
+        }
+
+        public string CompareHands()
+        {
+            var result = CheckForStraightFlush();
+            if (result != Constants.NO_RESULT)
                 return result;
 
-            result = CheckFor4OfaKind(firstPlayerName, firstPlayerCards, secondPlayerName, secondPlayerCards);
-            if (result != NO_RESULT)
+            result = CheckFor4OfaKind();
+            if (result != Constants.NO_RESULT)
                 return result;
 
-            result = CheckForAFullHouse(firstPlayerName, firstPlayerCards, secondPlayerName, secondPlayerCards);
-            if (result != NO_RESULT)
+            result = CheckForAFullHouse();
+            if (result != Constants.NO_RESULT)
                 return result;
 
-            result = CheckForAFlush(firstPlayerName, firstPlayerCards, secondPlayerName, secondPlayerCards);
-            if (result != NO_RESULT)
+            result = CheckForAFlush();
+            if (result != Constants.NO_RESULT)
                 return result;
 
-            result = CheckForAStraight(firstPlayerName, firstPlayerCards, secondPlayerName, secondPlayerCards);
-            if (result != NO_RESULT)
+            result = CheckForAStraight();
+            if (result != Constants.NO_RESULT)
                 return result;
 
-            result = CheckForTrips(firstPlayerName, firstPlayerCards, secondPlayerName, secondPlayerCards);
-            if (result != NO_RESULT)
+            result = CheckForTrips();
+            if (result != Constants.NO_RESULT)
                 return result;
 
-            result = CheckForTwoPairs(firstPlayerName, firstPlayerCards, secondPlayerName, secondPlayerCards);
-            if (result != NO_RESULT)
+            result = CheckForTwoPairs();
+            if (result != Constants.NO_RESULT)
                 return result;
 
-            result = CheckForPair(firstPlayerName, firstPlayerCards, secondPlayerName, secondPlayerCards);
-            if (result != NO_RESULT)
+            result = CheckForPair();
+            if (result != Constants.NO_RESULT)
                 return result;
 
-            var highCardFirstPlayer = HighestRankAceIsHigh(firstPlayerCards);
-            var highCardSecondPlayer = HighestRankAceIsHigh(secondPlayerCards);
+            var highCardFirstPlayer = evaluator.HighestRankAceIsHigh(firstPlayerCards);
+            var highCardSecondPlayer = evaluator.HighestRankAceIsHigh(secondPlayerCards);
 
             if (highCardFirstPlayer > highCardSecondPlayer)
                 return string.Format("{0} wins - high card", firstPlayerName);
             return highCardFirstPlayer < highCardSecondPlayer ? string.Format("{0} wins - high card", secondPlayerName) : "Tie";
         }
 
-        private string CheckForStraightFlush(string firstPlayerName, string firstPlayerCards, string secondPlayerName, string secondPlayerCards)
+        private string CheckForStraightFlush()
         {
-            var firstStraightFlushValue = StraightFlushRankValue(firstPlayerCards);
-            var secondStraightFlushValue = StraightFlushRankValue(secondPlayerCards);
+            var firstStraightFlushValue = evaluator.StraightFlushValue(firstPlayerCards);
+            var secondStraightFlushValue = evaluator.StraightFlushValue(secondPlayerCards);
             if (firstStraightFlushValue > secondStraightFlushValue)
                 return (string.Format("{0} wins - straight flush", firstPlayerName));
-            if (secondStraightFlushValue > firstStraightFlushValue)
+            if (firstStraightFlushValue < secondStraightFlushValue)
                 return (string.Format("{0} wins - straight flush", secondPlayerName));
-            if (firstStraightFlushValue > NO_VALUE && secondStraightFlushValue > NO_VALUE)
+            if (firstStraightFlushValue > Constants.NO_VALUE && secondStraightFlushValue > Constants.NO_VALUE)
                 return "Tie";
-            return NO_RESULT;
+            return Constants.NO_RESULT;
         }
 
-        private string CheckFor4OfaKind(string firstPlayerName, string firstPlayerCards, string secondPlayerName, string secondPlayerCards)
+        private string CheckFor4OfaKind()
         {
-            var firstHandFourOfAKindValue = FourOfAKindRankValue(firstPlayerCards);
-            var secondHandFourOfAKindValue = FourOfAKindRankValue(secondPlayerCards);
+            var firstHandFourOfAKindValue = evaluator.FourOfAKindValue(firstPlayerCards);
+            var secondHandFourOfAKindValue = evaluator.FourOfAKindValue(secondPlayerCards);
             if (firstHandFourOfAKindValue > secondHandFourOfAKindValue)
                 return (string.Format("{0} wins - four of a kind", firstPlayerName));
-            if (secondHandFourOfAKindValue > firstHandFourOfAKindValue)
-                return (string.Format("{0} wins - four of a kind", secondPlayerName));
-            return NO_RESULT;
+            return secondHandFourOfAKindValue > firstHandFourOfAKindValue ?
+                string.Format("{0} wins - four of a kind", secondPlayerName) : Constants.NO_RESULT;
         }
 
-        private string CheckForAFullHouse(string firstPlayerName, string firstPlayerCards, string secondPlayerName,
-            string secondPlayerCards)
+        private string CheckForAFullHouse()
         {
-            var firstFullHouseRankValue = FullHouseRankValue(firstPlayerCards);
-            var secondFullHouseRankValue = FullHouseRankValue(secondPlayerCards);
+            var firstFullHouseRankValue = evaluator.FullHouseValue(firstPlayerCards);
+            var secondFullHouseRankValue = evaluator.FullHouseValue(secondPlayerCards);
             if (firstFullHouseRankValue > secondFullHouseRankValue)
                 return (string.Format("{0} wins - full house", firstPlayerName));
-            if (secondFullHouseRankValue > firstFullHouseRankValue)
-                return (string.Format("{0} wins - full house", secondPlayerName));
-            return NO_RESULT;
+            return secondFullHouseRankValue > firstFullHouseRankValue ?
+                string.Format("{0} wins - full house", secondPlayerName) : Constants.NO_RESULT;
         }
 
-        private string CheckForAFlush(string firstPlayerName, string firstPlayerCards, string secondPlayerName,
-            string secondPlayerCards)
+        private string CheckForAFlush()
         {
-            var firstFlushRankValue = HandIsFlush(firstPlayerCards);
-            var secondFlushRankValue = HandIsFlush(secondPlayerCards);
+            var firstFlushRankValue = evaluator.FlushValue(firstPlayerCards);
+            var secondFlushRankValue = evaluator.FlushValue(secondPlayerCards);
             if (firstFlushRankValue > secondFlushRankValue)
                 return (string.Format("{0} wins - flush", firstPlayerName));
             if (firstFlushRankValue < secondFlushRankValue)
                 return (string.Format("{0} wins - flush", secondPlayerName));
-            return firstFlushRankValue > NO_VALUE ? "Tie" : NO_RESULT;
+            return firstFlushRankValue != Constants.NO_VALUE ? "Tie" : Constants.NO_RESULT;
         }
 
-        private string CheckForAStraight(string firstPlayerName, string firstPlayerCards, string secondPlayerName,
-            string secondPlayerCards)
+        private string CheckForAStraight()
         {
-            var firstStraightRankValue = HandIsStraight(firstPlayerCards);
-            var secondStraightRankValue = HandIsStraight(secondPlayerCards);
+            var firstStraightRankValue = evaluator.StraightValue(firstPlayerCards);
+            var secondStraightRankValue = evaluator.StraightValue(secondPlayerCards);
             if (firstStraightRankValue > secondStraightRankValue)
                 return (string.Format("{0} wins - straight", firstPlayerName));
             if (secondStraightRankValue > firstStraightRankValue)
                 return (string.Format("{0} wins - straight", secondPlayerName));
-            return firstStraightRankValue > NO_VALUE ? "Tie" : NO_RESULT;
+            return firstStraightRankValue != Constants.NO_VALUE ? "Tie" : Constants.NO_RESULT;
         }
 
-        private string CheckForTrips(string firstPlayerName, string firstPlayerCards, string secondPlayerName,
-            string secondPlayerCards)
+        private string CheckForTrips()
         {
-            var firstTripsRankValue = HandIsTrips(firstPlayerCards);
-            var secondTripsRankValue = HandIsTrips(secondPlayerCards);
+            var firstTripsRankValue = evaluator.TripsValue(firstPlayerCards);
+            var secondTripsRankValue = evaluator.TripsValue(secondPlayerCards);
             if (firstTripsRankValue > secondTripsRankValue)
                 return (string.Format("{0} wins - trips", firstPlayerName));
-            return firstTripsRankValue < secondTripsRankValue ? (string.Format("{0} wins - trips", secondPlayerName)) : NO_RESULT;
+            return firstTripsRankValue < secondTripsRankValue ? (string.Format("{0} wins - trips", secondPlayerName)) : Constants.NO_RESULT;
         }
 
-        private string CheckForTwoPairs(string firstPlayerName, string firstPlayerCards, string secondPlayerName,
-            string secondPlayerCards)
+        private string CheckForTwoPairs()
         {
-            var firstTwoPairsValues = HandIsTwoPairs(firstPlayerCards);
-            var secondTwoPairsValues = HandIsTwoPairs(secondPlayerCards);
-            if (firstTwoPairsValues[TWOPAIR_LOWEST_PAIR] == NO_VALUE
-                    && secondTwoPairsValues[TWOPAIR_LOWEST_PAIR] == NO_VALUE)
-                return NO_RESULT;
+            var firstTwoPairsValues = evaluator.TwoPairsValues(firstPlayerCards);
+            var secondTwoPairsValues = evaluator.TwoPairsValues(secondPlayerCards);
+            if (firstTwoPairsValues[TWOPAIR_LOWEST_PAIR] == Constants.NO_VALUE
+                    && secondTwoPairsValues[TWOPAIR_LOWEST_PAIR] == Constants.NO_VALUE)
+                return Constants.NO_RESULT;
 
             if (firstTwoPairsValues[TWOPAIR_HIGHEST_PAIR] > secondTwoPairsValues[TWOPAIR_HIGHEST_PAIR])
                 return (string.Format("{0} wins - two pairs", firstPlayerName));
@@ -148,13 +145,12 @@ namespace PokerHands
             return firstTwoPairsValues[TWOPAIR_KICKER] < secondTwoPairsValues[TWOPAIR_KICKER] ? (string.Format("{0} wins - two pairs", secondPlayerName)) : "Tie";
         }
 
-        private string CheckForPair(string firstPlayerName, string firstPlayerCards, string secondPlayerName,
-            string secondPlayerCards)
+        private string CheckForPair()
         {
-            var firstHandPairRankValue = HandIsAPair(firstPlayerCards);
-            var secondHandPairRankValue = HandIsAPair(secondPlayerCards);
-            if (firstHandPairRankValue[0] == NO_VALUE && secondHandPairRankValue[0] == NO_VALUE)
-                return NO_RESULT;
+            var firstHandPairRankValue = evaluator.PairValues(firstPlayerCards);
+            var secondHandPairRankValue = evaluator.PairValues(secondPlayerCards);
+            if (firstHandPairRankValue[0] == Constants.NO_VALUE && secondHandPairRankValue[0] == Constants.NO_VALUE)
+                return Constants.NO_RESULT;
 
             for (var idx = 0; idx < firstHandPairRankValue.Length; idx++)
             {
@@ -164,185 +160,6 @@ namespace PokerHands
                     return (string.Format("{0} wins - pair", secondPlayerName));
             }
             return "Tie";
-        }
-
-        private int FullHouseRankValue(string hand)
-        {
-            var pairFound = false;
-            var tripsFound = false;
-            var tripsValue = NO_VALUE;
-            for (var cardIdx = 0; cardIdx < CardValuesAceIsHigh.Length; cardIdx++)
-            {
-                var count = CountCardSymbols(CardValuesAceIsHigh[cardIdx], hand);
-                if (count == 3)
-                {
-                    tripsFound = true;
-                    tripsValue = cardIdx;
-                }
-                else if (count == 2)
-                    pairFound = true;
-            }
-            return tripsFound && pairFound? tripsValue : NO_VALUE;
-        }
-
-        private int StraightFlushRankValue(string hand)
-        {
-            var highestRank = HandIsStraight(hand);
-            return HandIsFlush(hand) == NO_VALUE ? NO_VALUE : highestRank;
-        }
-
-        private int HandIsFlush(string hand)
-        {
-            return CardSuits.Any(t => CountCardSymbols(t, hand) == CARDS_IN_HAND) ? HighestRankAceIsHigh(hand) : NO_VALUE;
-        }
-
-        private int HandIsStraight(string hand)
-        {
-            var straightValue = HandIsStraightAceIsHigh(hand);
-            if (straightValue > NO_VALUE)
-                return straightValue;
-            straightValue = HandIsStraightAceIsLow(hand);
-            return straightValue > NO_VALUE ? straightValue : NO_VALUE;
-        }
-        private int HandIsStraightAceIsHigh(string hand)
-        {
-            if (DuplicateRankValuesInHand(hand))
-                return NO_VALUE;
-            var lowestCardRank = LowestRank(hand, CardValuesAceIsHigh);
-            var highestCardRank = HighestRank(hand, CardValuesAceIsHigh);
-            return highestCardRank - lowestCardRank == 4 ? highestCardRank : NO_VALUE;
-        }
-
-        private int HandIsStraightAceIsLow(string hand)
-        {
-            if (DuplicateRankValuesInHand(hand))
-                return NO_VALUE;
-            var lowestCardRank = LowestRank(hand, CardValuesAceIsLow);
-            var highestCardRank = HighestRank(hand, CardValuesAceIsLow);
-            return highestCardRank - lowestCardRank == 4 ? highestCardRank : NO_VALUE;
-        }
-
-        private bool DuplicateRankValuesInHand(string hand)
-        {
-            return CardValuesAceIsHigh.Any(t => CountCardSymbols(t, hand) > 1);
-        }
-
-        private int HandIsTrips(string hand)
-        {
-            for (var cardIdx = 0; cardIdx < CardValuesAceIsHigh.Length; cardIdx++)
-            {
-                if (CountCardSymbols(CardValuesAceIsHigh[cardIdx], hand) == 3)
-                    return cardIdx;
-            }
-            return NO_VALUE;
-        }
-
-        private int[] HandIsTwoPairs(string hand)
-        {
-            var highPairValue = NO_VALUE;
-            var lowPairValue = NO_VALUE;
-            var kickerValue = NO_VALUE;
-
-            for (var cardIdx = CardValuesAceIsHigh.Length - 1; cardIdx >= 0; cardIdx--)
-            {
-                var count = CountCardSymbols(CardValuesAceIsHigh[cardIdx], hand);
-                if (count == 2)
-                {
-                    if (highPairValue == NO_VALUE)
-                    {
-                        highPairValue = cardIdx;
-                    }
-                    else
-                    {
-                        lowPairValue = cardIdx;
-                    }
-                }
-                else if (count == 1)
-                {
-                    kickerValue = cardIdx;
-                }
-            }
-            return new int[] { highPairValue, lowPairValue, kickerValue };
-        }
-
-        private int[] HandIsAPair(string hand)
-        {
-            var pairRankValue = NO_VALUE;
-            var firstHighCardValue = NO_VALUE;
-            var secondHighCardValue = NO_VALUE;
-            var thirdHighCardValue = NO_VALUE;
-
-            for (var cardIdx = CardValuesAceIsHigh.Length - 1; cardIdx >= 0; cardIdx--)
-            {
-                var count = CountCardSymbols(CardValuesAceIsHigh[cardIdx], hand);
-                if (count == 2)
-                {
-                    if (pairRankValue == NO_VALUE)
-                        pairRankValue = cardIdx;
-                }
-                else if (count == 1)
-                {
-                    if (firstHighCardValue == NO_VALUE)
-                        firstHighCardValue = cardIdx;
-                    else if (secondHighCardValue == NO_VALUE)
-                        secondHighCardValue = cardIdx;
-                    else if (thirdHighCardValue == NO_VALUE)
-                        thirdHighCardValue = cardIdx;
-                    else
-                    {
-                        break;
-                    }
-                }
-            }
-            return new int[]
-            {
-                pairRankValue, firstHighCardValue, secondHighCardValue, thirdHighCardValue
-            };
-        }
-
-        private int LowestRank(string hand, string cardValues)
-        {
-            for (var cardIdx = 0; cardIdx < cardValues.Length; cardIdx++)
-            {
-                if (CountCardSymbols(cardValues[cardIdx], hand) > 0)
-                    return cardIdx;
-            }
-            return NO_VALUE;
-        }
-
-        private int HighestRankAceIsHigh(string hand)
-        {
-            return HighestRank(hand, CardValuesAceIsHigh);
-        }
-
-        private int HighestRankAceIsLow(string hand)
-        {
-            return HighestRank(hand, CardValuesAceIsLow);
-        }
-
-        private int HighestRank(string hand, string cardValues)
-        {
-            for (var cardIdx = cardValues.Length - 1; cardIdx >= 0; cardIdx--)
-            {
-                if (CountCardSymbols(cardValues[cardIdx], hand) > 0)
-                    return cardIdx;
-            }
-            return NO_VALUE;
-        }
-
-        private int FourOfAKindRankValue(string hand)
-        {
-            for (var cardIdx = 0; cardIdx < CardValuesAceIsHigh.Length; cardIdx++)
-            {
-                if (CountCardSymbols(CardValuesAceIsHigh[cardIdx], hand) == 4)
-                    return cardIdx;
-            }
-            return NO_VALUE;
-        }
-
-        private int CountCardSymbols(char cardSymbol, string hand)
-        {
-            return hand.Count(t => cardSymbol == t);
         }
     }
 }

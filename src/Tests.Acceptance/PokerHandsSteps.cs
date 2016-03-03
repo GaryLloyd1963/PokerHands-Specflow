@@ -26,8 +26,9 @@ namespace Tests.Acceptance
         [When(@"I compare the hands")]
         public void WhenICompareTheHands()
         {
-            var comparer = new PokerHandsComparer();
-            _actualResult = comparer.CompareHands("Black", _blackhand, "White", _whiteHand);
+            var evaluator = new HandEvaluator();
+            var comparer = new PokerHandsComparer(evaluator, "Black", "White", _blackhand, _whiteHand);
+            _actualResult = comparer.CompareHands();
         }
 
         [Then(@"the comparison result is '(.*)'")]
