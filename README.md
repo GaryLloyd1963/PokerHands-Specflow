@@ -5,6 +5,20 @@ This small project illustrates the use of Specflow tests on a traditional Dojo-K
 source : http://codingdojo.org/cgi-bin/index.pl?KataPokerHands
 
 Tech stack - C#, VS2015, Nunit 2.6.4, Specflow 1.9.0
+
+Notes: For simplicity I've not used mockng or unit tests, this is mainly to show the use of SpecFlow
+for acceptance testing. The tests should be run from VS (the program.cs does nothing currently).
+
+###Files to note
+
+SpecFlow tests : https://github.com/GaryLloyd1963/PokerHands_Specflow/blob/master/src/Tests.Acceptance/PokerHandsAcceptance.feature
+
+Small set of test steps : https://github.com/GaryLloyd1963/PokerHands_Specflow/blob/master/src/Tests.Acceptance/PokerHandsSteps.cs
+
+Main hand comparer : https://github.com/GaryLloyd1963/PokerHands_Specflow/blob/master/src/PokerHands_Specflow/PokerHandsComparer.cs
+
+Hand evaluator (with interface): https://github.com/GaryLloyd1963/PokerHands_Specflow/blob/master/src/PokerHands_Specflow/HandEvaluator.cs
+ 
 ##Problem Description 
 
 Your job is to compare several pairs of poker hands and to indicate which, if either, has a higher rank. 
