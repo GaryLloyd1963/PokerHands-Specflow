@@ -26,15 +26,24 @@ namespace PokerHands
             if (result != NO_RESULT)
                 return result;
 
+            result = CheckForAFlush(firstPlayerName, firstPlayerCards, secondPlayerName, secondPlayerCards);
+            if (result != NO_RESULT)
+                return result;
+
             result = CheckForAStraight(firstPlayerName, firstPlayerCards, secondPlayerName, secondPlayerCards);
             if (result != NO_RESULT)
                 return result;
 
-            if (firstPlayerCards.Contains("A"))
-                return string.Format("{0} wins - with high card: Ace", firstPlayerName);
-            if (secondPlayerCards.Contains("A"))
-                return string.Format("{0} wins - with high card: Ace", secondPlayerName);
-            return "Tie";
+            result = CheckForTrips(firstPlayerName, firstPlayerCards, secondPlayerName, secondPlayerCards);
+            if (result != NO_RESULT)
+                return result;
+
+            var highCardFirstPlayer = HighestRankAceIsHigh(firstPlayerCards);
+            var highCardSecondPlayer = HighestRankAceIsHigh(secondPlayerCards);
+
+            if (highCardFirstPlayer > highCardSecondPlayer)
+                return string.Format("{0} wins - high card", firstPlayerName);
+            return highCardFirstPlayer < highCardSecondPlayer ? string.Format("{0} wins - high card", secondPlayerName) : "Tie";
         }
 
         private string CheckForStraightFlush(string firstPlayerName, string firstPlayerCards, string secondPlayerName, string secondPlayerCards)
@@ -73,6 +82,18 @@ namespace PokerHands
             return NO_RESULT;
         }
 
+        private string CheckForAFlush(string firstPlayerName, string firstPlayerCards, string secondPlayerName,
+            string secondPlayerCards)
+        {
+            var firstFlushRankValue = HandIsFlush(firstPlayerCards);
+            var secondFlushRankValue = HandIsFlush(secondPlayerCards);
+            if (firstFlushRankValue > secondFlushRankValue)
+                return (string.Format("{0} wins - flush", firstPlayerName));
+            if (firstFlushRankValue < secondFlushRankValue)
+                return (string.Format("{0} wins - flush", secondPlayerName));
+            return firstFlushRankValue > NO_VALUE ? "Tie" : NO_RESULT;
+        }
+
         private string CheckForAStraight(string firstPlayerName, string firstPlayerCards, string secondPlayerName,
             string secondPlayerCards)
         {
@@ -82,9 +103,17 @@ namespace PokerHands
                 return (string.Format("{0} wins - straight", firstPlayerName));
             if (secondStraightRankValue > firstStraightRankValue)
                 return (string.Format("{0} wins - straight", secondPlayerName));
-            if (firstStraightRankValue > NO_VALUE)
-                return "Tie";
-            return NO_RESULT;
+            return firstStraightRankValue > NO_VALUE ? "Tie" : NO_RESULT;
+        }
+
+        private string CheckForTrips(string firstPlayerName, string firstPlayerCards, string secondPlayerName,
+            string secondPlayerCards)
+        {
+            var firstTripsRankValue = HandIsTrips(firstPlayerCards);
+            var secondTripsRankValue = HandIsTrips(secondPlayerCards);
+            if (firstTripsRankValue > secondTripsRankValue)
+                return (string.Format("{0} wins - trips", firstPlayerName));
+            return firstTripsRankValue < secondTripsRankValue ? (string.Format("{0} wins - trips", secondPlayerName)) : NO_RESULT;
         }
 
         private int FullHouseRankValue(string hand)
@@ -108,15 +137,13 @@ namespace PokerHands
 
         private int StraightFlushRankValue(string hand)
         {
-            if (!HandIsFlush(hand))
-                return 0;
             var highestRank = HandIsStraight(hand);
-            return highestRank > NO_VALUE ? highestRank : NO_VALUE;
+            return HandIsFlush(hand) == NO_VALUE ? NO_VALUE : highestRank;
         }
 
-        private bool HandIsFlush(string hand)
+        private int HandIsFlush(string hand)
         {
-            return CardSuits.Any(t => CountCardSymbols(t, hand) == CARDS_IN_HAND);
+            return CardSuits.Any(t => CountCardSymbols(t, hand) == CARDS_IN_HAND) ? HighestRankAceIsHigh(hand) : NO_VALUE;
         }
 
         private int HandIsStraight(string hand)
@@ -129,6 +156,8 @@ namespace PokerHands
         }
         private int HandIsStraightAceIsHigh(string hand)
         {
+            if (DuplicateRankValuesInHand(hand))
+                return NO_VALUE;
             var lowestCardRank = LowestRankAceIsHigh(hand);
             var highestCardRank = HighestRankAceIsHigh(hand);
             return highestCardRank - lowestCardRank == 4 ? highestCardRank : NO_VALUE;
@@ -136,9 +165,26 @@ namespace PokerHands
 
         private int HandIsStraightAceIsLow(string hand)
         {
+            if (DuplicateRankValuesInHand(hand))
+                return NO_VALUE;
             var lowestCardRank = LowestRankAceIsLow(hand);
             var highestCardRank = HighestRankAceIsLow(hand);
             return highestCardRank - lowestCardRank == 4 ? highestCardRank : NO_VALUE;
+        }
+
+        private bool DuplicateRankValuesInHand(string hand)
+        {
+            return CardValuesAceIsHigh.Any(t => CountCardSymbols(t, hand) > 1);
+        }
+
+        private int HandIsTrips(string hand)
+        {
+            for (var cardIdx = 0; cardIdx < CardValuesAceIsHigh.Length; cardIdx++)
+            {
+                if (CountCardSymbols(CardValuesAceIsHigh[cardIdx], hand) == 3)
+                    return cardIdx;
+            }
+            return NO_VALUE;
         }
 
         private int LowestRankAceIsHigh(string hand)

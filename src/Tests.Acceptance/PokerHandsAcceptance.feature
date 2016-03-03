@@ -64,6 +64,32 @@ Scenario: Full house. Given a full house and a high card hand dealt to players B
 	Then the comparison result is 'Black wins - full house'
 
 #=================================================================================================================
+# Flush tests
+Scenario: Flush. Given a high card and a flush dealt to players Black and White
+	Given the hand dealt to Black is '2H 4S 8C 7D AH'
+	And the hand dealt to White is  '2S 8S AS QS 3S'
+	When I compare the hands
+	Then the comparison result is 'White wins - flush'
+
+Scenario: Flush. Given a flush and a high card hand dealt to players Black and White
+	Given the hand dealt to Black is '3H 2H KH QH 7H'
+	And the hand dealt to White is  '2D 4S 6C 7D AH'
+	When I compare the hands
+	Then the comparison result is 'Black wins - flush'
+
+Scenario: Flush. Given 2 unequal flushes dealt to players Black and White
+	Given the hand dealt to Black is '3H 2H KH QH 7H'
+	And the hand dealt to White is  '2D 4D 7D QD AD'
+	When I compare the hands
+	Then the comparison result is 'White wins - flush'
+
+Scenario: Flush. Given 2 equal flushes dealt to players Black and White
+	Given the hand dealt to Black is '3H 2H KH QH 7H'
+	And the hand dealt to White is  'KC 3C 7C 2C QC'
+	When I compare the hands
+	Then the comparison result is 'Tie'
+
+#=================================================================================================================
 # Straight tests
 Scenario: Straight. Given a high card hand, and a straight, dealt to players Black and White
 	Given the hand dealt to Black is '2H 3D 5S 9C AD'
@@ -84,24 +110,39 @@ Scenario: Straight. Given 2 equal straights dealt to players Black and White
 	Then the comparison result is 'Tie'
 
 #=================================================================================================================
+# Three of a kind tests (trips)
+Scenario: Three of a kind. Given a high card hand, and trips, dealt to players Black and White
+	Given the hand dealt to Black is '2H 3D 5S 9C AD'
+	And the hand dealt to White is  'AC AD AS 4C 5H'
+	When I compare the hands
+	Then the comparison result is 'White wins - trips'
+
+Scenario: Three of a kind. Given trips and a high card hand dealt to players Black and White
+	Given the hand dealt to Black is '3C 3D 3S KC AH'
+	And the hand dealt to White is  '2H 3D 5S 9C AD'
+	When I compare the hands
+	Then the comparison result is 'Black wins - trips'
+
+Scenario: Three of a kind. Given trips dealt to players Black and White
+	Given the hand dealt to Black is 'KC KD KS 2C AH'
+	And the hand dealt to White is  'JC JD JS 8C 4H'
+	When I compare the hands
+	Then the comparison result is 'Black wins - trips'
+
+#=================================================================================================================
 # High card tests	
 Scenario: High card. Given 2 high card hands, king high, and ace high, dealt to players Black and White
 	Given the hand dealt to Black is '2H 3D 5S 9C KD'
 	And the hand dealt to White is  '2C 3H 4S 8C AH'
 	When I compare the hands
-	Then the comparison result is 'White wins - with high card: Ace'
+	Then the comparison result is 'White wins - high card'
 
 Scenario: High card. Given 2 high card hands, ace high, and king high, dealt to players Black and White
 	Given the hand dealt to Black is '2C 3H 4S 8C AH'
 	And the hand dealt to White is  '2H 3D 5S 9C KD'
 	When I compare the hands
-	Then the comparison result is 'Black wins - with high card: Ace'
+	Then the comparison result is 'Black wins - high card'
 
-Scenario: High card. Given a high card and a flush dealt to players Black and White
-	Given the hand dealt to Black is '2H 4S 4C 2D 4H'
-	And the hand dealt to White is  '2S 8S AS QS 3S'
-	When I compare the hands
-	Then the comparison result is 'White wins - flush'
 
 
 
