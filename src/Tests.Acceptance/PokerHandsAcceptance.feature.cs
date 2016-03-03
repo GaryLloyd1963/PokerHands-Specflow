@@ -451,21 +451,162 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Two pairs. Given a high card hand and a two pair dealt to players Black and White" +
+            "")]
+        public virtual void TwoPairs_GivenAHighCardHandAndATwoPairDealtToPlayersBlackAndWhite()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Two pairs. Given a high card hand and a two pair dealt to players Black and White" +
+                    "", ((string[])(null)));
+#line 134
+this.ScenarioSetup(scenarioInfo);
+#line 135
+ testRunner.Given("the hand dealt to Black is \'2H 5S KD 9C 3D\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 136
+ testRunner.And("the hand dealt to White is  \'KC KH 4S 4C AH\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 137
+ testRunner.When("I compare the hands", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 138
+ testRunner.Then("the comparison result is \'White wins - two pairs\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Two pairs. Given a two pairs hand and a high card hand dealt to players Black and" +
+            " White")]
+        public virtual void TwoPairs_GivenATwoPairsHandAndAHighCardHandDealtToPlayersBlackAndWhite()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Two pairs. Given a two pairs hand and a high card hand dealt to players Black and" +
+                    " White", ((string[])(null)));
+#line 140
+this.ScenarioSetup(scenarioInfo);
+#line 141
+ testRunner.Given("the hand dealt to Black is \'KC KH 4S 4C AH\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 142
+ testRunner.And("the hand dealt to White is  \'2H 5S KD 9C 3D\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 143
+ testRunner.When("I compare the hands", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 144
+ testRunner.Then("the comparison result is \'Black wins - two pairs\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Two pairs. Given a equal two pairs hands with unequal kickers dealt to players Bl" +
+            "ack and White")]
+        public virtual void TwoPairs_GivenAEqualTwoPairsHandsWithUnequalKickersDealtToPlayersBlackAndWhite()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Two pairs. Given a equal two pairs hands with unequal kickers dealt to players Bl" +
+                    "ack and White", ((string[])(null)));
+#line 146
+this.ScenarioSetup(scenarioInfo);
+#line 147
+ testRunner.Given("the hand dealt to Black is \'KC KH 4S 4C 2H\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 148
+ testRunner.And("the hand dealt to White is  \'KD KS 4D 4H 8H\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 149
+ testRunner.When("I compare the hands", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 150
+ testRunner.Then("the comparison result is \'White wins - two pairs\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Two pairs. Given a equal two pairs hands with equal kickers dealt to players Blac" +
+            "k and White")]
+        public virtual void TwoPairs_GivenAEqualTwoPairsHandsWithEqualKickersDealtToPlayersBlackAndWhite()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Two pairs. Given a equal two pairs hands with equal kickers dealt to players Blac" +
+                    "k and White", ((string[])(null)));
+#line 152
+this.ScenarioSetup(scenarioInfo);
+#line 153
+ testRunner.Given("the hand dealt to Black is \'KC KH 4S 4C 8C\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 154
+ testRunner.And("the hand dealt to White is  \'KD KS 4D 4H 8H\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 155
+ testRunner.When("I compare the hands", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 156
+ testRunner.Then("the comparison result is \'Tie\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Pairs. Given a high card hand and a pair dealt to players Black and White")]
+        public virtual void Pairs_GivenAHighCardHandAndAPairDealtToPlayersBlackAndWhite()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Pairs. Given a high card hand and a pair dealt to players Black and White", ((string[])(null)));
+#line 160
+this.ScenarioSetup(scenarioInfo);
+#line 161
+ testRunner.Given("the hand dealt to Black is \'2H 5S KD 9C 3D\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 162
+ testRunner.And("the hand dealt to White is  \'3C KC KH 4S QH\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 163
+ testRunner.When("I compare the hands", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 164
+ testRunner.Then("the comparison result is \'White wins - pair\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Pairs. Given a pair and a high card hand dealt to players Black and White")]
+        public virtual void Pairs_GivenAPairAndAHighCardHandDealtToPlayersBlackAndWhite()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Pairs. Given a pair and a high card hand dealt to players Black and White", ((string[])(null)));
+#line 166
+this.ScenarioSetup(scenarioInfo);
+#line 167
+ testRunner.Given("the hand dealt to Black is \'3C KC KH 4S QH\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 168
+ testRunner.And("the hand dealt to White is  \'2H 5S KD 9C 3D\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 169
+ testRunner.When("I compare the hands", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 170
+ testRunner.Then("the comparison result is \'Black wins - pair\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Pairs. Given pair hands dealt to players Black and White")]
+        public virtual void Pairs_GivenPairHandsDealtToPlayersBlackAndWhite()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Pairs. Given pair hands dealt to players Black and White", ((string[])(null)));
+#line 172
+this.ScenarioSetup(scenarioInfo);
+#line 173
+ testRunner.Given("the hand dealt to Black is \'3C KC KH 4S QH\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 174
+ testRunner.And("the hand dealt to White is  \'2H 5S 5D 9C 3D\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 175
+ testRunner.When("I compare the hands", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 176
+ testRunner.Then("the comparison result is \'Black wins - pair\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("High card. Given 2 high card hands, king high, and ace high, dealt to players Bla" +
             "ck and White")]
         public virtual void HighCard_Given2HighCardHandsKingHighAndAceHighDealtToPlayersBlackAndWhite()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("High card. Given 2 high card hands, king high, and ace high, dealt to players Bla" +
                     "ck and White", ((string[])(null)));
-#line 134
+#line 180
 this.ScenarioSetup(scenarioInfo);
-#line 135
+#line 181
  testRunner.Given("the hand dealt to Black is \'2H 3D 5S 9C KD\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 136
+#line 182
  testRunner.And("the hand dealt to White is  \'2C 3H 4S 8C AH\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 137
+#line 183
  testRunner.When("I compare the hands", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 138
+#line 184
  testRunner.Then("the comparison result is \'White wins - high card\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -478,15 +619,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("High card. Given 2 high card hands, ace high, and king high, dealt to players Bla" +
                     "ck and White", ((string[])(null)));
-#line 140
+#line 186
 this.ScenarioSetup(scenarioInfo);
-#line 141
+#line 187
  testRunner.Given("the hand dealt to Black is \'2C 3H 4S 8C AH\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 142
+#line 188
  testRunner.And("the hand dealt to White is  \'2H 3D 5S 9C KD\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 143
+#line 189
  testRunner.When("I compare the hands", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 144
+#line 190
  testRunner.Then("the comparison result is \'Black wins - high card\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

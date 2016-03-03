@@ -130,6 +130,52 @@ Scenario: Three of a kind. Given trips dealt to players Black and White
 	Then the comparison result is 'Black wins - trips'
 
 #=================================================================================================================
+# Two pair tests
+Scenario: Two pairs. Given a high card hand and a two pair dealt to players Black and White
+	Given the hand dealt to Black is '2H 5S KD 9C 3D'
+	And the hand dealt to White is  'KC KH 4S 4C AH'
+	When I compare the hands
+	Then the comparison result is 'White wins - two pairs'
+
+Scenario: Two pairs. Given a two pairs hand and a high card hand dealt to players Black and White
+	Given the hand dealt to Black is 'KC KH 4S 4C AH'
+	And the hand dealt to White is  '2H 5S KD 9C 3D'
+	When I compare the hands
+	Then the comparison result is 'Black wins - two pairs'
+
+Scenario: Two pairs. Given a equal two pairs hands with unequal kickers dealt to players Black and White
+	Given the hand dealt to Black is 'KC KH 4S 4C 2H'
+	And the hand dealt to White is  'KD KS 4D 4H 8H'
+	When I compare the hands
+	Then the comparison result is 'White wins - two pairs'
+
+Scenario: Two pairs. Given a equal two pairs hands with equal kickers dealt to players Black and White
+	Given the hand dealt to Black is 'KC KH 4S 4C 8C'
+	And the hand dealt to White is  'KD KS 4D 4H 8H'
+	When I compare the hands
+	Then the comparison result is 'Tie'
+
+#=================================================================================================================
+# Pair tests
+Scenario: Pairs. Given a high card hand and a pair dealt to players Black and White
+	Given the hand dealt to Black is '2H 5S KD 9C 3D'
+	And the hand dealt to White is  '3C KC KH 4S QH'
+	When I compare the hands
+	Then the comparison result is 'White wins - pair'
+
+Scenario: Pairs. Given a pair and a high card hand dealt to players Black and White
+	Given the hand dealt to Black is '3C KC KH 4S QH'
+	And the hand dealt to White is  '2H 5S KD 9C 3D'
+	When I compare the hands
+	Then the comparison result is 'Black wins - pair'
+
+Scenario: Pairs. Given pair hands dealt to players Black and White
+	Given the hand dealt to Black is '3C KC KH 4S QH'
+	And the hand dealt to White is  '2H 5S 5D 9C 3D'
+	When I compare the hands
+	Then the comparison result is 'Black wins - pair'
+
+#=================================================================================================================
 # High card tests	
 Scenario: High card. Given 2 high card hands, king high, and ace high, dealt to players Black and White
 	Given the hand dealt to Black is '2H 3D 5S 9C KD'
