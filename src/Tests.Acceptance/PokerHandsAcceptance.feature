@@ -175,6 +175,17 @@ Scenario: Pairs. Given pair hands dealt to players Black and White
 	When I compare the hands
 	Then the comparison result is 'Black wins - pair'
 
+Scenario: Pairs. Given equal pair hands with unequal kickers dealt to players Black and White
+	Given the hand dealt to Black is '3C KC KH 4S QH'
+	And the hand dealt to White is  '2H KS KD 9C 3D'
+	When I compare the hands
+	Then the comparison result is 'Black wins - pair'
+
+Scenario: Pairs. Given equal pair hands with equal kickers dealt to players Black and White
+	Given the hand dealt to Black is '3C KC KH 4S QH'
+	And the hand dealt to White is  '4H KS KD QC 3D'
+	When I compare the hands
+	Then the comparison result is 'Tie'
 #=================================================================================================================
 # High card tests	
 Scenario: High card. Given 2 high card hands, king high, and ace high, dealt to players Black and White

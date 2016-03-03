@@ -153,11 +153,17 @@ namespace PokerHands
         {
             var firstHandPairRankValue = HandIsAPair(firstPlayerCards);
             var secondHandPairRankValue = HandIsAPair(secondPlayerCards);
-            if (firstHandPairRankValue > secondHandPairRankValue)
-                return (string.Format("{0} wins - pair", firstPlayerName));
-            if (firstHandPairRankValue < secondHandPairRankValue)
-                return (string.Format("{0} wins - pair", secondPlayerName));
-            return NO_RESULT;
+            if (firstHandPairRankValue[0] == NO_VALUE && secondHandPairRankValue[0] == NO_VALUE)
+                return NO_RESULT;
+
+            for (var idx = 0; idx < firstHandPairRankValue.Length; idx++)
+            {
+                if (firstHandPairRankValue[idx] > secondHandPairRankValue[idx])
+                    return (string.Format("{0} wins - pair", firstPlayerName));
+                if (firstHandPairRankValue[idx] < secondHandPairRankValue[idx])
+                    return (string.Format("{0} wins - pair", secondPlayerName));
+            }
+            return "Tie";
         }
 
         private int FullHouseRankValue(string hand)
@@ -259,14 +265,39 @@ namespace PokerHands
             return new int[] { highPairValue, lowPairValue, kickerValue };
         }
 
-        private int HandIsAPair(string hand)
+        private int[] HandIsAPair(string hand)
         {
+            var pairRankValue = NO_VALUE;
+            var firstHighCardValue = NO_VALUE;
+            var secondHighCardValue = NO_VALUE;
+            var thirdHighCardValue = NO_VALUE;
+
             for (var cardIdx = CardValuesAceIsHigh.Length - 1; cardIdx >= 0; cardIdx--)
             {
-                if (CountCardSymbols(CardValuesAceIsHigh[cardIdx], hand) == 2)
-                    return cardIdx;
+                var count = CountCardSymbols(CardValuesAceIsHigh[cardIdx], hand);
+                if (count == 2)
+                {
+                    if (pairRankValue == NO_VALUE)
+                        pairRankValue = cardIdx;
+                }
+                else if (count == 1)
+                {
+                    if (firstHighCardValue == NO_VALUE)
+                        firstHighCardValue = cardIdx;
+                    else if (secondHighCardValue == NO_VALUE)
+                        secondHighCardValue = cardIdx;
+                    else if (thirdHighCardValue == NO_VALUE)
+                        thirdHighCardValue = cardIdx;
+                    else
+                    {
+                        break;
+                    }
+                }
             }
-            return NO_VALUE;
+            return new int[]
+            {
+                pairRankValue, firstHighCardValue, secondHighCardValue, thirdHighCardValue
+            };
         }
 
         private int LowestRank(string hand, string cardValues)
